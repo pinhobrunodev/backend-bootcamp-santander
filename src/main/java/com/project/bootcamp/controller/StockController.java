@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import com.project.bootcamp.modelDTO.StockDTO;
 
 import org.springframework.http.MediaType;
@@ -25,14 +27,14 @@ public class StockController {
     // Vai receber no corpo de um pedido um objeto do tipo StockDTO para salvar no banco 
      // como que eu quero q envie esse dado para mim ? formato Json  e como vou devolver? no formato Json
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<StockDTO>save(@RequestBody StockDTO dto){
+    public ResponseEntity<StockDTO>save(@Valid @RequestBody StockDTO dto){
         // Retornando o DTO
         return ResponseEntity.ok(dto);
     }
 
     // Alterando
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<StockDTO> update(@RequestBody StockDTO dto){
+    public ResponseEntity<StockDTO> update(@Valid @RequestBody StockDTO dto){
        return ResponseEntity.ok(dto);
     }
 
