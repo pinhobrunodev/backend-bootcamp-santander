@@ -26,6 +26,6 @@ public class BootcampApplication {
 			.license(new License().name("Apache 2.0").url("http://springdoc.org")));
 		}
 		// URL TO SEE THE API DOCUMENTATION
-		//http://localhost:8080/bootcamp/swagger-ui/index.html
+		//http://localhost:8080/bootcamp/swagger-ui.html
 
 }
