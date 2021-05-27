@@ -34,6 +34,13 @@ public class Stock {
 
     }
 
+    public Stock(Long id, String name, Double price,Double variation, LocalDate date){
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.variation = variation;
+    }
+
     public LocalDate getDate() {
         return date;
     }

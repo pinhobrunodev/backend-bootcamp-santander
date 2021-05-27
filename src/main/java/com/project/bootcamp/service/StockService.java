@@ -11,13 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
  // Regras de Negocio
-@Service 
+@Service
 public class StockService {
     
     @Autowired
     private StockMapper stockMapper;
 
-    @Autowired
+    @Autowired(required=true)
     private StockRepository stockRepository;
 
     // Salvando
