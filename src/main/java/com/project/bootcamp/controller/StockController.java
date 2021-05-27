@@ -7,7 +7,9 @@ import java.util.List;
 import javax.validation.Valid;
 
 import com.project.bootcamp.modelDTO.StockDTO;
+import com.project.bootcamp.service.StockService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +20,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+// So conhece o DTO  e recebe o Service
 @RestController
 @RequestMapping(value = "/stock")
 public class StockController {
     
+    @Autowired // Injecao de dependencia
+    private StockService stockService;
     
     // Endpoint to  save (@POST)
     // Vai receber no corpo de um pedido um objeto do tipo StockDTO para salvar no banco 
@@ -29,7 +34,7 @@ public class StockController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<StockDTO>save(@Valid @RequestBody StockDTO dto){
         // Retornando o DTO
-        return ResponseEntity.ok(dto);
+        return ResponseEntity.ok(stockService.save(dto));
     }
 
     // Alterando

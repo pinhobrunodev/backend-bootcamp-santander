@@ -9,6 +9,8 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
+// Classe para interagir com o Controlador
+// DTO vai atender o que o front necessita
 public class StockDTO {
 
     private Long id;
