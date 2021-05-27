@@ -1,7 +1,5 @@
 package com.project.bootcamp.controller;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -12,6 +10,8 @@ import com.project.bootcamp.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 // So conhece o DTO  e recebe o Service
+@CrossOrigin // => Importante pro frontend na horar de chamar os endpoint
 @RestController
 @RequestMapping(value = "/stock")
 public class StockController {
@@ -40,45 +41,35 @@ public class StockController {
     // Alterando
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<StockDTO> update(@Valid @RequestBody StockDTO dto){
-       return ResponseEntity.ok(dto);
+       return ResponseEntity.ok(stockService.update(dto));
     }
+
+    // Deletando os dados
+    @DeleteMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<StockDTO> delete(@PathVariable Long id){
+        return ResponseEntity.ok(stockService.delete(id));
+    } 
+
 
     // Listando os dados
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<StockDTO>> findAll(){
-        List<StockDTO> list = new ArrayList<>();
-        StockDTO dto  = new StockDTO();
-        dto.setId(1l);
-        dto.setName("Magazine Luiza");
-        dto.setPrice(100.00);
-        dto.setVariation(0.1);
-        dto.setDate(LocalDate.now());
-        list.add(dto);
-        return ResponseEntity.ok(list);
+      return ResponseEntity.ok(stockService.findAll());
     }
 
     // Procurando item pelo id
     @GetMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<StockDTO> findById(@PathVariable Long id){
-        List<StockDTO> list = new ArrayList<>();
-        StockDTO stock1  = new StockDTO();
-        StockDTO stock2  = new StockDTO();
-        stock1.setId(1l);
-        stock1.setName("Magazine Luiza");
-        stock1.setPrice(100.00);
-        stock1.setVariation(0.1);
-        stock1.setDate(LocalDate.now());
-        list.add(stock1);
-        stock2.setId(2l);
-        stock2.setName("Ponto Frio");
-        stock2.setPrice(200.00);
-        stock2.setVariation(0.5);
-        stock2.setDate(LocalDate.now());
-        list.add(stock2);
-        list.add(stock2);
-        // Se o id informado for igual ao id dentro da lista (== 0) eu retorno ele
-        StockDTO dtoSelected = list.stream().filter(x->x.getId().compareTo(id) ==  0).findFirst().get();
-        return ResponseEntity.ok(dtoSelected);
+        return ResponseEntity.ok(stockService.findById(id));
     }
 
+    // ENDPOINT : /bootcamp/stock/today
+    // Procurando o stock pela data de hoje
+    @GetMapping(value = "/today",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<StockDTO>> findByToday(){
+        return ResponseEntity.ok(stockService.findByToday());
+    }
+
+
+    
 }

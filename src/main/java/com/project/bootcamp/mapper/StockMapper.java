@@ -1,5 +1,8 @@
 package com.project.bootcamp.mapper;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.project.bootcamp.model.Stock;
 import com.project.bootcamp.modelDTO.StockDTO;
 
@@ -39,5 +42,13 @@ public class StockMapper {
         dto.setDate(stock.getDate());
         dto.setVariation(stock.getVariation());
         return dto;
+    }
+
+
+    // Recebo uma lista de entidades e retorno uma lista de dtos
+    public List<StockDTO> toDto(List<Stock> list) {
+       // percorro a lista de entidades , pego item por item e mando pro toDto setando os valores da entidade no dto
+       // e transformo em uma lista
+        return list.stream().map(this::toDto).collect(Collectors.toList());
     }
 }
