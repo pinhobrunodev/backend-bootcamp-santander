@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+
 @Entity // Reflexo da tabela no banco de dados
 @Table(name = "tb_stock")
 public class Stock {
@@ -26,7 +29,9 @@ public class Stock {
 
     @Column(name = "variation")
     private Double variation;
-
+    
+    
+    @JsonFormat(shape = Shape.STRING,pattern = "dd/MM/yyyy") // Formato brasileiro
     @Column(name = "date")
     private LocalDate date;
 
