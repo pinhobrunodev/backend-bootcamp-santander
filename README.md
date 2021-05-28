@@ -25,7 +25,7 @@ Sistema web de cotações desenvolvido no Bootcamp Santander em conjunto com a D
 
 ```
 # clonar no repositório
-- git clone https://github.com/MaxsuelSantos/cotacoes-santander.git
+- git clone https://github.com/pinhobrunodev/backend-bootcamp-santander.git
 
 # executar o projeto
 - ./mvnw spring-boot:run
