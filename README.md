@@ -1,6 +1,6 @@
 # 🎯 Sobre o projeto
 
-Sistema web de cotações desenvolvido no Bootcamp Santander em conjunto com a Digintal Innovation One
+Sistema web de cotações desenvolvido no Bootcamp Santander em conjunto com a Digintal Innovation One.
 
 ## 🛠 Tecnologias Utilizadas
 
